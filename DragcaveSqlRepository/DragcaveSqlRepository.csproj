@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DragcaveEntities\DragcaveEntities.csproj" />
+    <ProjectReference Include="..\DragcaveRepository\DragcaveRepository.csproj" />
+  </ItemGroup>
+
 </Project>

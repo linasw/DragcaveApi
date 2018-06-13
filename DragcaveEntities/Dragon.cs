@@ -13,5 +13,8 @@ namespace DragcaveEntities
         public int Clicks { get; set; }
         public string Breed { get; set; }
         public DragonState State { get; set; }
+
+        public string AccoutId;
+        public DragcaveAccount DragcaveAccount;
     }
 }

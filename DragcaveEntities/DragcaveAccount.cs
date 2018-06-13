@@ -7,5 +7,6 @@ namespace DragcaveEntities
 {
     public class DragcaveAccount : IdentityUser
     {
+        public ICollection<Dragon> Dragons = new List<Dragon>();
     }
 }
