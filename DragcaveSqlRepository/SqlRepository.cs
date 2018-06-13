@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DragcaveEntities;
 using DragcaveRepository;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DragcaveSqlRepository
 {
@@ -17,7 +18,7 @@ namespace DragcaveSqlRepository
             _context = context;
         }
 
-        public Task<Dragon> GetDragonAsync(Guid id)
+        public Task<Dragon> GetDragonAsync(int id)
         {
             var dragon = _context.Dragons.FirstOrDefault(x => x.Id == id);
 
@@ -27,6 +28,17 @@ namespace DragcaveSqlRepository
             }
 
             return Task.FromResult(dragon);
+        }
+
+        public async Task<bool> AnyDragonsAsync()
+        {
+            return await _context.Dragons.AnyAsync();
+        }
+
+        public async Task AddDragonsAsync(Dragon[] dragons)
+        {
+            await _context.Dragons.AddRangeAsync(dragons);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -18,11 +18,11 @@ namespace DragcaveApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetDragon(Guid id)
+        public async Task<IActionResult> GetDragon(int id)
         {
-            var dragon = _repository.GetDragonAsync(id);
+            var dragon = await _repository.GetDragonAsync(id);
 
-            return View(dragon);
+            return Ok(dragon);
         }
     }
 }

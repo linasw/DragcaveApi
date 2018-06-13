@@ -48,10 +48,16 @@ namespace DragcaveApi
             services.AddCors();
 
             services.AddScoped<IRepository, SqlRepository>();
+
+            services.AddSingleton(new DataSeeder(new DummyDataGenerator()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            DataSeeder dataSeeder,
+            IRepository repository)
         {
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()
@@ -59,6 +65,8 @@ namespace DragcaveApi
                 .AllowAnyHeader());
             //if (env.IsDevelopment())
             app.UseDeveloperExceptionPage();
+
+            dataSeeder.SeedAsync(repository).Wait();
 
             app.Run(async (context) =>
             {

@@ -9,6 +9,8 @@ namespace DragcaveRepository
 {
     public interface IRepository
     {
-        Task<Dragon> GetDragonAsync(Guid Id);
+        Task<Dragon> GetDragonAsync(int Id);
+        Task<bool> AnyDragonsAsync();
+        Task AddDragonsAsync(Dragon[] dragons);
     }
 }
